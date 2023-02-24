@@ -1,0 +1,30 @@
+ -- SUMX
+_Medida = SUMX(tabela; coluna1 {operação} coluna2)
+
+
+ -- FILTER(Tabela, FilterExpression)
+// Vamos supor que temos uma tabela vendas com produtos e informações
+sobre esse produto, podemos por exemplo, utilizar o filtro para criar outra tabela
+com os dados filtrados:
+
+Tecnologia = FILTER(Vendas, Vendas[Categoria] = "Tecnologia")
+
+// Acabamos de criar uma tabela apenas com itens de Tecnologia
+
+
+ -- CALCULATE(Expressão, [Filtrar1], ...)
+
+_Faturamento Online = CALCULATE(SUM(Vendas[Faturamento]), Vendas[Loja] = "Online")
+
+// Foi criado uma medida com a soma de vendas onde as lojas são = "Online"
+
+_Media das Lojas Online = CALCULATE(AVERAGE(Vendas[Faturamento]), Vendas[Loja] = "Online")
+
+// É possível também aplicar filtros em cima de filtro
+
+_Media das Lojas Online na Venda de roupas = 
+	CALCULATE(AVERAGE(Vendas[Faturamento]),
+ 	Vendas[Loja] = "Online",
+	Vendas[Categoria] = "Roupas")
+
+// Foi criada uma medida apenas com a média das lojas online na categoria roupas
